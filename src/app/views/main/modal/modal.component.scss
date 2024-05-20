@@ -1,0 +1,29 @@
+.popup-wrapper {
+  position: fixed;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.41);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.popup {
+  width: 350px;
+  position: absolute;
+  background-color: #F8F9FA;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.popup-top {
+  display: flex;
+  align-items: center;
+}
+
+.popup .btn-close {
+  align-self: start;
+}

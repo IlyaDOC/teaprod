@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="main-products">
+    <div class="">
+      <div class="col">
+        <div class="card">
+          <div class="product_image text-center">
+            <img src="{{productItem.image}}" class="card-img-top w-50" alt="...">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{{ productItem.title }}</h4>
+            <div>{{productItem.description}}</div>
+            <h5 class="my-3">Цена: {{productItem.price}} руб/кг</h5>
+            <a href="#" class="btn btn-outline-primary" routerLink="/order" [queryParams]="{product: productItem.title}">В корзину</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

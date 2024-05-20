@@ -1,0 +1,100 @@
+router-outlet {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+.main-faq {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 37px;
+  color: #000000;
+}
+
+.main-title-collection {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 37px;
+  color: #000000;
+}
+
+h3 {
+  height: 68px;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 425px) {
+  h3 {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  h3 {
+    font-size: 11px;
+  }
+}
+
+.order-title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 37px;
+  color: #000000;
+}
+
+label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.footer {
+  background-color: #F8F9FA;
+}
+
+.footer_title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.main-products .btn {
+  color: #0d6efd;
+}
+
+.main-products .btn:hover {
+  color: #FFFFFF;
+}
+
+.submit-button {
+  color: #0d6efd;
+}
+.submit-button:hover {
+  color: #FFFFFF;
+}
+
+.btn:hover {
+  background-color: #0d6efd;
+}
+
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";

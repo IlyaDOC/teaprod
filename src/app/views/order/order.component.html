@@ -1,0 +1,106 @@
+<div class="container" #formContainer>
+  <div #form>
+    <h2 class="order-title text-center mb-5">Сделать заказ</h2>
+    <form action="#" class="mb-5 form" novalidate [formGroup]="checkoutForm">
+      <div class="row g-3 row-cols-1">
+        <div class="col-sm-4 col-12">
+          <label for="first_name" class="form-label">Имя</label>
+          <input type="text" class="form-control form-input" id="first_name"
+                 formControlName="firstName"
+                 placeholder="Иван">
+
+          <div class="invalid-feedback" *ngIf="firstName?.invalid && (firstName?.touched || firstName?.touched)">
+            <div *ngIf="firstName?.errors?.['required']">
+              Valid first name is required.
+            </div>
+            <div *ngIf="firstName?.errors?.['pattern']">
+              First name must contain only letters.
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-4 col-12">
+          <label for="last_name" class="form-label">Фамилия</label>
+          <input type="text" class="form-control form-input" id="last_name"
+                 formControlName="lastName"
+                 placeholder="Иванов">
+          <div class="invalid-feedback" *ngIf="lastName?.invalid && (lastName?.touched || lastName?.touched)">
+            <div *ngIf="lastName?.errors?.['required']">
+              Valid last name is required.
+            </div>
+            <div *ngIf="lastName?.errors?.['pattern']">
+              Last name must contain only letters.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12">
+          <label for="phone" class="form-label">Телефон</label>
+          <input type="tel" class="form-control form-input" id="phone"
+                 formControlName="phone"
+                 placeholder="+79999999999">
+          <div class="invalid-feedback" *ngIf="phone?.invalid && (phone?.touched || phone?.touched)">
+            <div *ngIf="phone?.errors?.['required']">
+              Valid phone is required.
+            </div>
+            <div *ngIf="phone?.errors?.['pattern']">
+              The phone field must contain only 10 digits, the + sign is optional
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-12">
+          <label for="country" class="form-label">Страна</label>
+          <input type="text" class="form-control form-input" id="country"
+                 formControlName="country"
+                 placeholder="Россия">
+          <div class="invalid-feedback" *ngIf="country?.invalid && (country?.touched || country?.touched)">
+            <div *ngIf="country?.errors?.['required']">
+              Valid country is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-12">
+          <label for="zip" class="form-label">Индекс</label>
+          <input type="text" class="form-control form-input" id="zip"
+                 formControlName="zip"
+                 placeholder="000000">
+          <div class="invalid-feedback" *ngIf="zip?.invalid && (zip?.touched || zip?.touched)">
+            <div *ngIf="zip?.errors?.['required']">
+              Valid zip is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="product" class="form-label">Название товара</label>
+          <input type="text" class="form-control form-input" id="product"
+                 formControlName="product"
+                 placeholder="Название товара">
+        </div>
+        <div class="col-12">
+          <label for="address" class="form-label">Адрес</label>
+          <input type="text" class="form-control form-input" id="address"
+                 formControlName="address"
+                 placeholder="ул. Название улицы, д.3">
+          <div class="invalid-feedback" *ngIf="address?.invalid && (address?.touched || address?.touched)">
+            <div *ngIf="address?.errors?.['required']">
+              Valid address is required.
+            </div>
+            <div *ngIf="address?.errors?.['pattern']">
+              In the address field, you can enter: letters, numbers, spaces, hyphens and slashes
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="comment" class="form-label">Комментарий к заказу</label>
+          <input type="text" class="form-control form-input" id="comment" formControlName="comment">
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline-primary mt-3 submit-button" (click)="createOrder()" #actionButton>Отправить</button>
+      <div class="invalid-feedback" *ngIf="!orderSuccess">
+        Произошла ошибка. Попробуйте еще раз.
+      </div>
+    </form>
+  </div>
+  <h1 *ngIf="showMessage" class="text-center my-5">
+    Спасибо за заказ!
+  </h1>
+</div>

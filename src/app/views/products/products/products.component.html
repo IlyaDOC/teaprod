@@ -1,0 +1,22 @@
+<h2 class="main-title-collection text-center mb-5">Наши чайные коллекции</h2>
+<div class="container">
+  <div class="main-products mb-5">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+      <div class="col" *ngFor="let productItem of productItems">
+        <div class="card">
+          <div class="product_image">
+            <img src="{{productItem.image}}" class="card-img-top" alt="...">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ productItem.title }}</h5>
+            <a href="#" class="btn btn-outline-primary" [routerLink]="['/products', productItem.id]">Подробнее</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loader-wrapper" *ngIf="isLoading">
+  <div class="loader"></div>
+</div>
+
