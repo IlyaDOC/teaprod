@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import {Observable, Subject} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {ProductType} from "../../../types/product.type";
+import {Injectable, OnInit} from '@angular/core';
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private apiURL: string = 'https://testologia.ru/tea'
-  constructor(private http: HttpClient) {}
 
-  searchProducts(query: string): Observable<ProductType[]> {
-    return this.http.get<ProductType[]>(`${this.apiURL}?search=${query}`);
+  private searchSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  search$: Observable<string> = this.searchSubject.asObservable();
+  constructor() {
+
+  }
+  setSearchQuery(query: string) {
+    this.searchSubject.next(query);
   }
 }

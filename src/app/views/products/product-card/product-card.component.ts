@@ -28,7 +28,8 @@ export class ProductCardComponent implements OnInit {
           .subscribe({
             next:(data: ProductType): void => {
               this.productItem = data;
-            }, error: (error): void => {
+            },
+            error: (error): void => {
               console.log(error);
               this.router.navigate(['/'])
             }

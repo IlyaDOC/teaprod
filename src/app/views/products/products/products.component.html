@@ -1,7 +1,10 @@
-<h2 class="main-title-collection text-center mb-5">Наши чайные коллекции</h2>
+<h2 class="main-title-collection text-center mb-5" *ngIf="productItems.length>0 && searchQuery.length === 0">Наши чайные коллекции</h2>
+<div *ngIf="productItems.length === 0" class="main-title-collection text-center">Ничего не найдено</div>
+<div *ngIf="productItems.length > 0 && searchQuery.length > 0" class="main-title-collection text-center mb-5">Результаты поиска по запросу: "{{searchQuery}}"</div>
 <div class="container">
   <div class="main-products mb-5">
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3" *ngIf="productItems.length > 0">
       <div class="col" *ngFor="let productItem of productItems">
         <div class="card">
           <div class="product_image">

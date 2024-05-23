@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {SearchService} from "../../services/search.service";
-import {ProductType} from "../../../../types/product.type";
-import {Subject} from "rxjs";
+import {Component, OnInit} from '@angular/core';
+
 import {FormBuilder} from "@angular/forms";
+import {SearchService} from "../../services/search.service";
+
 
 @Component({
   selector: 'header-component',
@@ -10,10 +10,10 @@ import {FormBuilder} from "@angular/forms";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  searchQuery: Subject<string> = new Subject<string>();
 
 
-  constructor(public searchService: SearchService, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private searchService: SearchService) {
 
   }
 
@@ -26,13 +26,21 @@ export class HeaderComponent implements OnInit {
 
   }
 
+
   get search() {
-    return this.searchForm.get('search')?.value;
+    return this.searchForm.get('search');
   }
 
-  test() {
-    console.log(this.search);
+  onSearch(query: string) {
+    this.searchService.setSearchQuery(query);
   }
+
+  onReset() {
+    if (!this.search?.value) {
+      this.searchService.setSearchQuery('');
+    }
+  }
+
 
 
 
