@@ -1,39 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductType} from "../../../../types/product.type";
 import {ProductsRequestService} from "../../../shared/services/products-request.service";
-import {Router} from "@angular/router";
-import {tap} from "rxjs";
+import { Subscription, switchMap, tap} from "rxjs";
+import {SearchService} from "../../../shared/services/search.service";
+
 
 @Component({
   selector: 'products-component',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
-
-  constructor(private productRequestService: ProductsRequestService, private router: Router) {
-  }
+export class ProductsComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public productItems: ProductType[] = [];
+  private data!: string;
+  searchQuery: string = '';
+  private productItems$!: Subscription;
+  private searchQuery$!: Subscription;
+
+  constructor(private productRequestService: ProductsRequestService,
+              private searchService: SearchService) {
+  }
+
 
   ngOnInit(): void {
-    this.isLoading= true;
-    this.productRequestService.getProducts()
+    this.isLoading = true;
+    this.productItems$ = this.searchService.search$
       .pipe(
-      tap(()=> {
-        this.isLoading = false;
+        switchMap((query: string) => this.productRequestService.getProducts(query)),
+        tap(()=> {
+          this.isLoading= false;
+
+        })
+      )
+      .subscribe((data: ProductType[]): void => {
+        this.productItems = data;
       })
-      )
-      .subscribe(
-        {
-          next: (data: ProductType[]): void => {
-            this.productItems = data;
-          },
-          error: (error): void => {
-            console.log(error);
-            this.router.navigate(['/']);
-          }
-        }
-      )
+
+    this.searchQuery$ = this.searchService.search$.subscribe((query: string): void => {
+      this.searchQuery = query;
+    });
   }
+
+  ngOnDestroy() {
+    this.productItems$.unsubscribe();
+    this.searchQuery$.unsubscribe();
+  }
+
+
 }

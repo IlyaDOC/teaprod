@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
 import {Subscription, tap} from "rxjs";
 import {ProductsRequestService} from "../../shared/services/products-request.service";
 import {ActivatedRoute, Params} from "@angular/router";

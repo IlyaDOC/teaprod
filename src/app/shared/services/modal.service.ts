@@ -12,7 +12,7 @@ export class PopupService {
     this.observable = new Observable<void>((observer: Subscriber<void>) => {
       const timeout: NodeJS.Timeout = setTimeout((): void => {
         observer.next()
-      }, 1000)
+      }, 500000)
 
       return {
         unsubscribe(): void {
